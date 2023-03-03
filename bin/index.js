@@ -1,4 +1,15 @@
-import { readFileSync } from 'fs'
-const filepath1 = readFileSync(/cli/__fixtures__/file1.json, 'utf-8')
-const filepath2 = readFileSync(/cli/__fixtures__/file2.json, 'utf-8')
-console.log(filepath1)
+import  gendiff  from '../src/gendiff.js'
+import { Command } from 'commander';
+
+const program = new Command();
+
+program  
+    .version('1.0.0')
+    .name('gendiff')
+    .description('Compares two configuration files and shows a difference.') 
+    .option('-f, --format <type>', 'output format')
+    .arguments('<filepath1> <filepath2>')
+    .action((filepath1,filepath2) => {
+        console.log(gendiff(filepath1,filepath2))
+    })
+.parse(process.argv)
