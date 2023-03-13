@@ -1,5 +1,7 @@
 import { readFileSync } from 'fs'
 import _  from 'lodash'
+import path from 'path';
+import parser from './parsers.js';
 
 const stringify = (value, replacer = ' ', spacesCount = 1) => {
     const iter = (currentValue, depth) => {
@@ -27,10 +29,10 @@ const stringify = (value, replacer = ' ', spacesCount = 1) => {
   
  
 export default function genDiff (filepath1,filepath2)  {
-const data1 = readFileSync(filepath1, 'utf-8')
-const data2  = readFileSync(filepath2,'utf-8')
-const dataParse1 = JSON.parse(data1)
-const dataParse2 = JSON.parse(data2)
+
+
+const dataParse1 = parser(filepath1)
+const dataParse2 = parser(filepath2)
 
 
     const keys1 = Object.keys(dataParse1);
@@ -53,6 +55,6 @@ const dataParse2 = JSON.parse(data2)
     }
 
  return stringify(result)
-  };
+  }
 
   
