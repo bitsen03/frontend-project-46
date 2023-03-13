@@ -21,7 +21,7 @@ const stringify = (value, replacer = ' ', spacesCount = 1) => {
         `${bracketIndent}}`,
       ].join('\n');
     };
-    
+  
     return iter(value, 1);
   };
   
