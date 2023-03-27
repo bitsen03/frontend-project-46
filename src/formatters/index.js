@@ -10,5 +10,6 @@ export default (ast, type) => {
   if(!format) {
     throw new Error(`Unknown format ${type}`);
   }
+  
   return format(ast);
 }
