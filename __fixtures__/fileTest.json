@@ -17,7 +17,7 @@
             key: value
           + ops: vops
         }
-    }
+   }
     group1: {
       - baz: bas
       + baz: bars
