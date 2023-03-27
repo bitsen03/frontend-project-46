@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-const indent = (depth, spaceCount = 4) => ' '.repeat(depth * spaceCount - 2);
+const indent = (depth, spaceCount = 4) => ' '.repeat(depth * spaceCount -2);
 
 const stringify = (data, depth, mapping) => {
   if (!_.isObject(data)) {
@@ -22,7 +22,7 @@ if (data === ''){
     },
     nested: ({ key, children }, depth, iter) => {
     const output = children.flatMap((node) => mapping[node.type](node, depth +1, iter));
-    return `${indent(depth)}  ${key}: {\n${output.join('\n')}\n${indent(depth)}}`;
+    return `${indent(depth)}  ${key}: {\n${output.join('\n')}\n${indent(depth)}  }`;
     },
     added: (node , depth) => `${indent(depth)}+ ${node.key}: ${stringify(node.value, depth, mapping)}`,
     deleted: (node , depth) => `${indent(depth)}- ${node.key}: ${stringify(node.value, depth, mapping)}`,
@@ -30,9 +30,16 @@ if (data === ''){
     changed: (node, depth) => {
       const { key, value1, value2 } = node;
       
-      const data1 = `${indent(depth)}- ${key}: ${stringify(value1, depth, mapping)}`;
-      const data2 = `${indent(depth)}+ ${key}: ${stringify(value2, depth, mapping)}`;
-      return [data1, data2]
+if (stringify(value1, depth, mapping) === '')
+{
+  const data1 = `${indent(depth)}- ${key}:${stringify(value1, depth, mapping)}`;
+  const data2 = `${indent(depth)}+ ${key}: ${stringify(value2, depth, mapping)}`;
+  return [data1, data2]
+} 
+
+  const data1 = `${indent(depth)}- ${key}: ${stringify(value1, depth, mapping)}`;
+  const data2 = `${indent(depth)}+ ${key}: ${stringify(value2, depth, mapping)}`;
+  return [data1, data2]
     }
   }
 
