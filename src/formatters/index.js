@@ -1,8 +1,10 @@
 import renderTree from './stylish.js'; 
+import renderTree1 from './plain.js';
+
 const formatters = {
   stylish: renderTree,
-  plain: '',
-  json: ''
+  plain: renderTree1,
+  json: JSON.stringify,
 };
 
 export default (ast, type) => {
