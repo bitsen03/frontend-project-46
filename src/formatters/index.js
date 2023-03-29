@@ -1,4 +1,4 @@
-import renderTree from './stylish.js'; 
+import renderTree from './stylish.js';
 import renderTree1 from './plain.js';
 
 const formatters = {
@@ -9,9 +9,9 @@ const formatters = {
 
 export default (ast, type) => {
   const format = formatters[type];
-  if(!format) {
+  if (!format) {
     throw new Error(`Unknown format ${type}`);
   }
-  
+
   return format(ast);
-}
+};
