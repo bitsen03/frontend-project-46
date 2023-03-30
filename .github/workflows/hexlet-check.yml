@@ -6,11 +6,8 @@
 name: hexlet-check
 
 on:
-  push:
-    branches:
-      - '**'
-    tags:
-      - '**'
+  [push]
+    
 
 jobs:
   build:
