@@ -1,4 +1,4 @@
-name: autoTest.js Package
+name: Node.js Package
 
 on: [push]
 
@@ -20,7 +20,7 @@ jobs:
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
-          CC_TESTREPORT: ${{ CC_TESTREPORT }}
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
           coverageCommand: make test-coverage
           debug: true
